@@ -2,7 +2,7 @@
 #define SIM_H
 
 #define FIELD_X_SIZE 100
-#define FIELD_Y_SIZE 20
+#define FIELD_Y_SIZE 100
 
 #define CELL_WIDTH 5
 
