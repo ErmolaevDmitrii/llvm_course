@@ -7,20 +7,17 @@ int (*game_field     )[FIELD_X_SIZE][FIELD_Y_SIZE];
 int (*prev_game_field)[FIELD_X_SIZE][FIELD_Y_SIZE];
 
 void draw_rectangle(int x, int y) {
-  if((*game_field)[x][y] && ~(*prev_game_field)[x][y]) {
-    for(int j = y * CELL_WIDTH; j < ((y + 1) * CELL_WIDTH); ++j) {
-      for(int i = x * CELL_WIDTH; i < ((x + 1) * CELL_WIDTH); ++i) {
-        simPutPixel(i, j, 0xFFFFFFFF);
-      }
+  if ((*game_field)[x][y] == (*prev_game_field)[x][y])
+    return;
+
+  int cell_color = (*game_field)[x][y] ? 0xFFFFFFFF : 0xFF000000;
+
+  for(int j = y * CELL_WIDTH; j < ((y + 1) * CELL_WIDTH); ++j) {
+    for(int i = x * CELL_WIDTH; i < ((x + 1) * CELL_WIDTH); ++i) {
+      simPutPixel(i, j, cell_color);
     }
   }
-  else if (~(*game_field)[x][y] && (*prev_game_field)[x][y]){
-    for(int j = y * CELL_WIDTH; j < ((y + 1) * CELL_WIDTH); ++j) {
-      for(int i = x * CELL_WIDTH; i < ((x + 1) * CELL_WIDTH); ++i) {
-        simPutPixel(i, j, 0xFF000000);
-      }
-    }
-  }
+
   return;
 }
 
